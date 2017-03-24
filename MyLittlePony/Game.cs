@@ -14,8 +14,7 @@ namespace MyLittlePony
 
         public Game()
         {
-            this.createPlayers();
-            this.createCards();
+
         }
 
         public void createPlayers()
@@ -87,12 +86,6 @@ namespace MyLittlePony
             higherValueWins[14] = true;
             higherValueWins[15] = true;
 
-            int[] player = new int[4];
-            player[0] = 1;
-            player[1] = 2;
-            player[2] = 3;
-            player[3] = 4;
-
             string[] name = new string[4];
             name[0] = "Pferd 1";
             name[1] = "Pferd 2";
@@ -113,13 +106,49 @@ namespace MyLittlePony
                 {
                     _properties.Add(new Property(value[i*4+j], unit[i*4+j], higherValueWins[i*4+j]));
                 }
-                _cards.Add(new Card(player[i], name[i], id[i], _properties));
+                _cards.Add(new Card(name[i], id[i], _properties));
             }
         }
 
         public List<Card> getCards()
         {
             return _cards;
+        }
+
+        public void shuffleCards()
+        {
+            List<Card> _shuffledCards = new List<Card>();
+
+            Random r = new Random();
+
+            int maxValueRandom = 4;
+            
+            for (int i = 0; i <= 3; i++)
+            { 
+                int randomNumber = r.Next(0, maxValueRandom);
+
+                if (!_shuffledCards.Contains(_cards[randomNumber]))
+                {
+                    _shuffledCards.Add(_cards[randomNumber]);
+                    _cards.Remove(_cards[randomNumber]);
+                    maxValueRandom = maxValueRandom - 1;
+                }
+            }
+
+            this._cards = _shuffledCards;
+        }
+
+        public void distributeCards()
+        {
+            _players = this.getPlayers();
+
+            for (int i = 0; i <= 3; i++)
+            {
+                int playerIndex = i % 4;
+
+                _players[playerIndex].getCards().Add(_cards[i]);
+                _cards[i].setPlayer(_players[playerIndex]);
+            }
         }
     }
 }

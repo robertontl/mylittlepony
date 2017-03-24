@@ -8,25 +8,24 @@ namespace MyLittlePony
 {
     class Card
     {
-        private int _player;
+        private Player _player;
         private string _name;
         private string _id;
         private List<Property> _properties = new List<Property>();
 
-        public Card(int player, string name, string id, List<Property> property)
+        public Card(string name, string id, List<Property> property)
         {
-            this.setPlayer(player);
             this.setName(name);
             this.setID(id);
             this._properties = property;
         }
 
-        public int getPlayer()
+        public Player getPlayer()
         {
             return this._player;
         }
 
-        public void setPlayer(int player)
+        public void setPlayer(Player player)
         {
             this._player = player;
         }

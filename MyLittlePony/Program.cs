@@ -10,33 +10,35 @@ namespace MyLittlePony
     {
         static void Main(string[] args)
         {
-            /*
-            Player p1 = new Player();
-            p1.setName("Klaus");
-            p1.setID(1);
-            */
-            /*
-            Player p2 = new Player("Peter", 2);
-            Console.WriteLine(p2.getName());
-            Console.WriteLine(p2.getID());
-            */
-
             Game game = new Game();
 
+            game.createPlayers();
+            game.createCards();
+            game.shuffleCards();
+            game.distributeCards();
+            
             foreach (Card card in game.getCards())
             {
-                Console.WriteLine("\n" + card.getPlayer() + "\t" +card.getID() + "\t" + card.getName());
+                Console.WriteLine("\nSpieler:" + card.getPlayer().getName() + "\t KartenID: " + card.getID() + "\t Kartenname: " + card.getName());
 
                 for (int i = 0; i <= 3; i++)
                 {
-                    Console.WriteLine(card.getProperties()[i].getValue() + " " + card.getProperties()[i].getUnit());
+                    Console.WriteLine("Eigenschaften:" + card.getProperties()[i].getValue() + " " + card.getProperties()[i].getUnit());
                 }
             }
-            
+            /*
             foreach (Player player in game.getPlayers())
             {
-                Console.WriteLine("\n" + player.getName() + "\t" + player.getID());
+                Console.WriteLine(player.getName());
+
+                foreach(Card card in player.getCards())
+                {
+
+                    Console.WriteLine(card.getName());
+                    Console.WriteLine(card.getPlayer());
+                }
             }
+            */
 
             Console.ReadKey();
             

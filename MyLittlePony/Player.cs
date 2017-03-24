@@ -10,6 +10,7 @@ namespace MyLittlePony
     {
         public int _id;
         public string _name;
+        private List<Card> _cards = new List<Card>();
 
         public Player(string name, int ID)
         {
@@ -35,6 +36,11 @@ namespace MyLittlePony
         public void setID(int ID)
         {
             this._id = ID;
+        }
+
+        public List<Card> getCards()
+        {
+            return this._cards;
         }
     }
 }
