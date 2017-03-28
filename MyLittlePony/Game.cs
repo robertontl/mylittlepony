@@ -10,7 +10,7 @@ namespace MyLittlePony
     {
         private List<Player> _players = new List<Player>();
         private List<Card> _cards = new List<Card>();
-        private int _lastWinner;
+        private Player _lastWinner;
 
         public Game()
         {
@@ -32,7 +32,7 @@ namespace MyLittlePony
 
         public void createCards()
         {
-            int[] value = new int[16];
+            int[] value = new int[32];
             value[0] = 156;
             value[1] = 2;
             value[2] = 70;
@@ -49,8 +49,24 @@ namespace MyLittlePony
             value[13] = 1;
             value[14] = 95;
             value[15] = 7500;
+            value[16] = 175;
+            value[17] = 2;
+            value[18] = 70;
+            value[19] = 10000;
+            value[20] = 163;
+            value[21] = 4;
+            value[22] = 120;
+            value[23] = 15250;
+            value[24] = 193;
+            value[25] = 4;
+            value[26] = 90;
+            value[27] = 4000;
+            value[28] = 196;
+            value[29] = 1;
+            value[30] = 95;
+            value[31] = 2300;
 
-            string[] unit = new string[16];
+            string[] unit = new string[32];
             unit[0] = "cm";
             unit[1] = "int";
             unit[2] = "km/h";
@@ -67,8 +83,24 @@ namespace MyLittlePony
             unit[13] = "int";
             unit[14] = "km/h";
             unit[15] = "Euro";
+            unit[16] = "cm";
+            unit[17] = "int";
+            unit[18] = "km/h";
+            unit[19] = "Euro";
+            unit[20] = "cm";
+            unit[21] = "int";
+            unit[22] = "km/h";
+            unit[23] = "Euro";
+            unit[24] = "cm";
+            unit[25] = "int";
+            unit[26] = "km/h";
+            unit[27] = "Euro";
+            unit[28] = "cm";
+            unit[29] = "int";
+            unit[30] = "km/h";
+            unit[31] = "Euro";
 
-            bool[] higherValueWins = new bool[16];
+            bool[] higherValueWins = new bool[32];
             higherValueWins[0] = true;
             higherValueWins[1] = true;
             higherValueWins[2] = true;
@@ -85,20 +117,44 @@ namespace MyLittlePony
             higherValueWins[13] = true;
             higherValueWins[14] = true;
             higherValueWins[15] = true;
+            higherValueWins[16] = true;
+            higherValueWins[17] = true;
+            higherValueWins[18] = true;
+            higherValueWins[19] = true;
+            higherValueWins[20] = true;
+            higherValueWins[21] = true;
+            higherValueWins[22] = true;
+            higherValueWins[23] = true;
+            higherValueWins[24] = true;
+            higherValueWins[25] = true;
+            higherValueWins[26] = true;
+            higherValueWins[27] = true;
+            higherValueWins[28] = true;
+            higherValueWins[29] = true;
+            higherValueWins[30] = true;
+            higherValueWins[31] = true;
 
-            string[] name = new string[4];
+            string[] name = new string[8];
             name[0] = "Pferd 1";
             name[1] = "Pferd 2";
             name[2] = "Pferd 3";
             name[3] = "Pferd 4";
+            name[4] = "Pferd 5";
+            name[5] = "Pferd 6";
+            name[6] = "Pferd 7";
+            name[7] = "Pferd 8";
 
-            string[] id = new string[4];
+            string[] id = new string[8];
             id[0] = "A2";
             id[1] = "G4";
             id[2] = "E6";
             id[3] = "D5";
+            id[4] = "A5";
+            id[5] = "G7";
+            id[6] = "E1";
+            id[7] = "D3";
 
-            for (int i = 0; i <= 3; i++)
+            for (int i = 0; i <= 7; i++)
             {
                 List<Property> _properties = new List<Property>();
 
@@ -121,9 +177,9 @@ namespace MyLittlePony
 
             Random r = new Random();
 
-            int maxValueRandom = 4;
+            int maxValueRandom = 8;
             
-            for (int i = 0; i <= 3; i++)
+            for (int i = 0; i <= 7; i++)
             { 
                 int randomNumber = r.Next(0, maxValueRandom);
 
@@ -142,7 +198,7 @@ namespace MyLittlePony
         {
             _players = this.getPlayers();
 
-            for (int i = 0; i <= 3; i++)
+            for (int i = 0; i <= 7; i++)
             {
                 int playerIndex = i % 4;
 
@@ -150,5 +206,54 @@ namespace MyLittlePony
                 _cards[i].setPlayer(_players[playerIndex]);
             }
         }
+
+        public void playRound()
+        {
+            Player p = this.getCurrentPlayer();
+            this.getCurrentCardsOfAllPlayers();
+            //p = this.playCard();
+        }
+
+        public Player getCurrentPlayer()
+        {
+            _players = this.getPlayers();
+
+            _lastWinner = _players[0];
+            
+            return _lastWinner;
+        }
+
+        /*
+        public List<Player> playCard()
+        {
+
+        }
+        */
+
+        public List<Card> getCurrentCardsOfAllPlayers()
+        {
+            List<Card> currentCardsOfAllPlayers = new List<Card>();
+
+            foreach (Card card in this.getCards())
+            {
+                foreach (Player players in this.getPlayers())
+                {
+                    //players.getCards().First();
+                    if (currentCardsOfAllPlayers.Count() <= 3)
+                    { 
+                        currentCardsOfAllPlayers.Add(players.getCards().First());
+                    }
+                }   
+            }
+
+            return currentCardsOfAllPlayers;
+        }
+
+        /*
+        public List<Player> compareCardsAndFindWinner()
+        {
+
+        }
+        */
     }
 }

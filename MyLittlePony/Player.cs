@@ -42,6 +42,22 @@ namespace MyLittlePony
         {
             return this._cards;
         }
+
+        public void playCard()
+        {
+            this.getCurrentCard();
+            this.chooseProperty();
+        }
+
+        public void getCurrentCard()
+        {
+
+        }
+
+        public void chooseProperty()
+        {
+
+        }
     }
 }
 

@@ -16,6 +16,7 @@ namespace MyLittlePony
             game.createCards();
             game.shuffleCards();
             game.distributeCards();
+            game.playRound();
             
             foreach (Card card in game.getCards())
             {
