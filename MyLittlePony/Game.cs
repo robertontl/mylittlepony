@@ -11,6 +11,7 @@ namespace MyLittlePony
         private List<Player> _players = new List<Player>();
         private List<Card> _cards = new List<Card>();
         private Player _lastWinner;
+        private int _numberOfCards = 8;
 
         public Game()
         {
@@ -32,7 +33,7 @@ namespace MyLittlePony
 
         public void createCards()
         {
-            int[] value = new int[32];
+            int[] value = new int[this._numberOfCards*4];
             value[0] = 156;
             value[1] = 2;
             value[2] = 70;
@@ -66,7 +67,7 @@ namespace MyLittlePony
             value[30] = 95;
             value[31] = 2300;
 
-            string[] unit = new string[32];
+            string[] unit = new string[this._numberOfCards*4];
             unit[0] = "cm";
             unit[1] = "int";
             unit[2] = "km/h";
@@ -100,7 +101,7 @@ namespace MyLittlePony
             unit[30] = "km/h";
             unit[31] = "Euro";
 
-            bool[] higherValueWins = new bool[32];
+            bool[] higherValueWins = new bool[this._numberOfCards*4];
             higherValueWins[0] = true;
             higherValueWins[1] = true;
             higherValueWins[2] = true;
@@ -134,7 +135,7 @@ namespace MyLittlePony
             higherValueWins[30] = true;
             higherValueWins[31] = true;
 
-            string[] name = new string[8];
+            string[] name = new string[this._numberOfCards];
             name[0] = "Pferd 1";
             name[1] = "Pferd 2";
             name[2] = "Pferd 3";
@@ -144,7 +145,7 @@ namespace MyLittlePony
             name[6] = "Pferd 7";
             name[7] = "Pferd 8";
 
-            string[] id = new string[8];
+            string[] id = new string[this._numberOfCards];
             id[0] = "A2";
             id[1] = "G4";
             id[2] = "E6";
@@ -154,7 +155,7 @@ namespace MyLittlePony
             id[6] = "E1";
             id[7] = "D3";
 
-            for (int i = 0; i <= 7; i++)
+            for (int i = 0; i <= this._numberOfCards-1; i++)
             {
                 List<Property> _properties = new List<Property>();
 
@@ -177,9 +178,9 @@ namespace MyLittlePony
 
             Random r = new Random();
 
-            int maxValueRandom = 8;
+            int maxValueRandom = this._numberOfCards;
             
-            for (int i = 0; i <= 7; i++)
+            for (int i = 0; i <= this._numberOfCards-1; i++)
             { 
                 int randomNumber = r.Next(0, maxValueRandom);
 
@@ -198,7 +199,7 @@ namespace MyLittlePony
         {
             _players = this.getPlayers();
 
-            for (int i = 0; i <= 7; i++)
+            for (int i = 0; i <= this._numberOfCards-1; i++)
             {
                 int playerIndex = i % 4;
 
