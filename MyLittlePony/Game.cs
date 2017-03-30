@@ -231,16 +231,9 @@ namespace MyLittlePony
         {
             List<Card> currentCardsOfAllPlayers = new List<Card>();
 
-            foreach (Card card in this.getCards())
+            foreach (Player player in this.getPlayers())
             {
-                foreach (Player players in this.getPlayers())
-                {
-                    //players.getCards().First();
-                    if (currentCardsOfAllPlayers.Count() <= 3)
-                    { 
-                        currentCardsOfAllPlayers.Add(players.getCards().First());
-                    }
-                }   
+                currentCardsOfAllPlayers.Add(player.getCurrentCard().First());
             }
 
             return currentCardsOfAllPlayers;

@@ -49,9 +49,9 @@ namespace MyLittlePony
             this.chooseProperty();
         }
 
-        public void getCurrentCard()
+        public List<Card> getCurrentCard()
         {
-
+            return this._cards;
         }
 
         public void chooseProperty()
