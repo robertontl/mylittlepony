@@ -197,14 +197,12 @@ namespace MyLittlePony
 
         public void distributeCards()
         {
-            _players = this.getPlayers();
-
             for (int i = 0; i <= this._numberOfCards-1; i++)
             {
                 int playerIndex = i % 4;
 
-                _players[playerIndex].getCards().Add(_cards[i]);
-                _cards[i].setPlayer(_players[playerIndex]);
+                this.getPlayers()[playerIndex].getCards().Add(_cards[i]);
+                _cards[i].setPlayer(this.getPlayers()[playerIndex]);
             }
         }
 
@@ -217,9 +215,7 @@ namespace MyLittlePony
 
         public Player getCurrentPlayer()
         {
-            _players = this.getPlayers();
-
-            _lastWinner = _players[0];
+            _lastWinner = this.getPlayers()[0];
             
             return _lastWinner;
         }
