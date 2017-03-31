@@ -45,16 +45,41 @@ namespace MyLittlePony
 
         public void playCard()
         {
-            this.getCurrentCards();
-            this.chooseProperty();
+            this.getCurrentCard();
+            //this.chooseProperty();
         }
 
-        public List<Card> getCurrentCards()
+        public Card getCurrentCard()
         {
-            return this._cards;
+            Card topCardOfCurrentPlayer = this._cards.First();
+            return topCardOfCurrentPlayer;
         }
 
-        public void chooseProperty()
+        public Property chooseProperty()
+        {
+            List<Property> propertiesOfTopCardOfCurrentPlayer = new List<Property>();
+
+            propertiesOfTopCardOfCurrentPlayer = this.getCurrentCard().getProperties();
+
+            Console.WriteLine("Hallo " + this.getCurrentCard().getPlayer().getName());
+            Console.WriteLine("Deine oberste Karte:\n");
+            Console.WriteLine("Name: " + this.getCurrentCard().getName());
+            Console.WriteLine("Eigenschaften:\n");
+
+            for (int i = 0; i <= 3; i++)
+            {
+                Console.WriteLine("[" + i + "] " + propertiesOfTopCardOfCurrentPlayer[i].getValue() + " " + propertiesOfTopCardOfCurrentPlayer[i].getUnit());
+            }
+
+            Console.WriteLine("Wähle eine Property aus.");
+            int propertyIndex = Convert.ToInt32(Console.ReadLine());
+
+            Property choosenProperty = this.getCurrentCard().getProperties()[propertyIndex];
+
+            return choosenProperty;
+        }
+
+        public void countCards()
         {
 
         }

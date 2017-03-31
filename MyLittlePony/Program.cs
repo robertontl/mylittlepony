@@ -17,32 +17,8 @@ namespace MyLittlePony
             game.shuffleCards();
             game.distributeCards();
             game.playRound();
-            
-            foreach (Card card in game.getCards())
-            {
-                Console.WriteLine("\nSpieler:" + card.getPlayer().getName() + "\t KartenID: " + card.getID() + "\t Kartenname: " + card.getName());
-
-                for (int i = 0; i <= 3; i++)
-                {
-                    Console.WriteLine("Eigenschaften:" + card.getProperties()[i].getValue() + " " + card.getProperties()[i].getUnit());
-                }
-            }
-            /*
-            foreach (Player player in game.getPlayers())
-            {
-                Console.WriteLine(player.getName());
-
-                foreach(Card card in player.getCards())
-                {
-
-                    Console.WriteLine(card.getName());
-                    Console.WriteLine(card.getPlayer());
-                }
-            }
-            */
 
             Console.ReadKey();
-            
         }
     }
 }

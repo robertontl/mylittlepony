@@ -208,8 +208,15 @@ namespace MyLittlePony
         public void playRound()
         {
             Player p = this.getCurrentPlayer();
-            this.getCurrentCardsOfAllPlayers();
-            //p = this.playCard();
+
+            p.playCard();
+
+            List<Card> currentCards = new List<Card>();
+            currentCards = this.getCurrentCardsOfAllPlayers();
+
+            Property choosenProperty = p.chooseProperty();
+
+            this.compareCardsAndFindWinner(currentCards, choosenProperty);
         }
 
         public Player getCurrentPlayer()
@@ -219,27 +226,59 @@ namespace MyLittlePony
             return _lastWinner;
         }
 
-        /*
-        public List<Player> playCard()
-        {
-
-        }
-        */
-
         public List<Card> getCurrentCardsOfAllPlayers()
         {
             List<Card> currentCardsOfAllPlayers = new List<Card>();
 
             foreach (Player player in this.getPlayers())
             {
-                currentCardsOfAllPlayers.Add(player.getCurrentCards().First());
+                currentCardsOfAllPlayers.Add(player.getCurrentCard());
             }
 
             return currentCardsOfAllPlayers;
         }
 
+        public int compareCardsAndFindWinner(List<Card> currentCards, Property choosenProperty)
+        {
+            string[] IDsIfValueIsEven = new string[4];
+            int winnerOfThisRound = 99;
+
+            List<int> properties = new List<int>();
+
+            for (int i = 0; i <= 3; i++)
+            {
+                IDsIfValueIsEven[i] = currentCards[i].getID();
+            }
+
+            foreach (Card card in currentCards)
+            {
+                foreach (Property property in card.getProperties())
+                {
+                    if (property.getUnit() == choosenProperty.getUnit())
+                    {
+                        properties.Add(property.getValue());
+                    }
+                }
+            }
+
+            int bestValue = 0;
+
+            for (int i = 0; i <= 3; i++)
+            {
+                if (bestValue < properties[i])
+                {
+                    bestValue = properties[i];
+                    winnerOfThisRound = i;
+                }
+            }
+
+            Console.WriteLine("Größter Wert: " + bestValue);
+
+            return winnerOfThisRound;
+        }
+        
         /*
-        public List<Player> compareCardsAndFindWinner()
+        public bool hasEveryPlayerEnoughCards()
         {
 
         }
