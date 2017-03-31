@@ -232,7 +232,7 @@ namespace MyLittlePony
 
             foreach (Player player in this.getPlayers())
             {
-                currentCardsOfAllPlayers.Add(player.getCurrentCard().First());
+                currentCardsOfAllPlayers.Add(player.getCurrentCards().First());
             }
 
             return currentCardsOfAllPlayers;

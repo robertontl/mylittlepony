@@ -45,11 +45,11 @@ namespace MyLittlePony
 
         public void playCard()
         {
-            this.getCurrentCard();
+            this.getCurrentCards();
             this.chooseProperty();
         }
 
-        public List<Card> getCurrentCard()
+        public List<Card> getCurrentCards()
         {
             return this._cards;
         }
