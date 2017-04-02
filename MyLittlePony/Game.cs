@@ -321,8 +321,6 @@ namespace MyLittlePony
         {
             Player p = this.getCurrentPlayer();
 
-            //int countCardsOfAllPlayers = p.countCards(_players);
-
             p.playCard();
 
             List<Card> currentCards = new List<Card>();
@@ -345,40 +343,7 @@ namespace MyLittlePony
                 currentPlayer = _lastWinner;
             }
 
-            /*
-            if (this._lastWinner)
-            {
-                foreach(this._players in player)
-                {
-                    if(this._lastWinner == _)
-                    {
-                        currentPlayer = player;
-                    }
-                }
-            } 
-            */
-            
-            /*
-            if (this._winnerOfThisRound == 0)
-            { 
-                _lastWinner = this.getPlayers()[0];
-            }
-            else if (this._winnerOfThisRound == 1)
-            {
-                _lastWinner = this.getPlayers()[1];
-            }
-            else if (this._winnerOfThisRound == 2)
-            {
-                _lastWinner = this.getPlayers()[2];
-            }
-            else if (this._winnerOfThisRound == 3)
-            {
-                _lastWinner = this.getPlayers()[3];
-            }
-            */
-            
             return currentPlayer;
-            //return currentPlayer;
         }
 
         public List<Card> getCurrentCardsOfAllPlayers()
