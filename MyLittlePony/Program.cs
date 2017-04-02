@@ -16,7 +16,16 @@ namespace MyLittlePony
             game.createCards();
             game.shuffleCards();
             game.distributeCards();
-            game.playRound();
+
+            while (game.hasEveryPlayerEnoughCards())
+            {
+                game.playRound();
+            }
+
+            if (game.hasEveryPlayerEnoughCards() == false)
+            {
+                Console.WriteLine("Spiel vorbei.");
+            }
 
             Console.ReadKey();
         }

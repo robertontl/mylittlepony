@@ -79,9 +79,25 @@ namespace MyLittlePony
             return choosenProperty;
         }
 
-        public void countCards()
+        public int countCards(Player player)
         {
+           // int numberOfCardsOfPlayer;
 
+            //player.getCards().Count();
+
+            /*
+            for (int i = 0; i <= 3; i++)
+            {
+                numberOfCardsOfPlayer = _players[i].getCards().Count();
+
+                if (numberOfCardsOfPlayer == 0)
+                {
+                    return i;
+                }
+            }
+            */
+
+            return player.getCards().Count();
         }
     }
 }

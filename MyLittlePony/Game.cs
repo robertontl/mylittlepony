@@ -11,6 +11,7 @@ namespace MyLittlePony
         private List<Player> _players = new List<Player>();
         private List<Card> _cards = new List<Card>();
         private Player _lastWinner;
+        private int _winnerOfThisRound;
 
         public Game()
         {
@@ -209,6 +210,8 @@ namespace MyLittlePony
         {
             Player p = this.getCurrentPlayer();
 
+            //int countCardsOfAllPlayers = p.countCards(_players);
+
             p.playCard();
 
             List<Card> currentCards = new List<Card>();
@@ -216,13 +219,28 @@ namespace MyLittlePony
 
             Property choosenProperty = p.chooseProperty();
 
-            this.compareCardsAndFindWinner(currentCards, choosenProperty);
+            Console.WriteLine("Folgender Spieler hat die Runde gewonnen: " + this.compareCardsAndFindWinner(currentCards, choosenProperty).getName());
         }
 
         public Player getCurrentPlayer()
         {
-            _lastWinner = this.getPlayers()[0];
-            
+            if (this._winnerOfThisRound == 0)
+            { 
+                _lastWinner = this.getPlayers()[0];
+            }
+            else if (this._winnerOfThisRound == 1)
+            {
+                _lastWinner = this.getPlayers()[1];
+            }
+            else if (this._winnerOfThisRound == 2)
+            {
+                _lastWinner = this.getPlayers()[2];
+            }
+            else if (this._winnerOfThisRound == 3)
+            {
+                _lastWinner = this.getPlayers()[3];
+            }
+
             return _lastWinner;
         }
 
@@ -238,17 +256,18 @@ namespace MyLittlePony
             return currentCardsOfAllPlayers;
         }
 
-        public int compareCardsAndFindWinner(List<Card> currentCards, Property choosenProperty)
-        {
-            string[] IDsIfValueIsEven = new string[4];
+        public Player compareCardsAndFindWinner(List<Card> currentCards, Property choosenProperty)
+        {   
             int winnerOfThisRound = 99;
 
-            List<int> properties = new List<int>();
+            string[] IDsIfValueIsEven = new string[4];
 
             for (int i = 0; i <= 3; i++)
             {
                 IDsIfValueIsEven[i] = currentCards[i].getID();
             }
+
+            List<int> properties = new List<int>();
 
             foreach (Card card in currentCards)
             {
@@ -262,26 +281,62 @@ namespace MyLittlePony
             }
 
             int bestValue = 0;
+            string IDofBestCard = "";
 
-            for (int i = 0; i <= 3; i++)
+            for (int i = 0; i <= _players.Count()-1; i++)
             {
+                if (bestValue == properties[i])
+                {
+                    Console.WriteLine("Identische Werte.");
+                    if (IDofBestCard[1] < currentCards[i].getID()[1])
+                    {
+                        winnerOfThisRound = i;
+                    }
+                    Console.WriteLine(IDofBestCard[1] + " " + currentCards[i].getID()[1]);
+                }
+
                 if (bestValue < properties[i])
                 {
                     bestValue = properties[i];
+                    IDofBestCard = IDsIfValueIsEven[i];
+                    //IDofBestCard = currentCards[i].getID();
                     winnerOfThisRound = i;
                 }
             }
 
-            Console.WriteLine("Größter Wert: " + bestValue);
+            Console.WriteLine("Größter Wert: " + bestValue + " " + choosenProperty.getUnit() + " KartenID: " + IDofBestCard);
 
-            return winnerOfThisRound;
+            for (int i = 0; i <= _players.Count()-1; i++)
+            {
+                //if (i != winnerOfThisRound)
+                //{
+
+                // Check ob gespielte Karte + gewonnene Karten von der Reihenfolge dem Gewinner hinten angehangen werden
+                    _players[winnerOfThisRound].getCards().Add(_players[i].getCards().First());
+                //}
+                _players[i].getCards().RemoveAt(0);
+            } 
+
+            this._winnerOfThisRound = winnerOfThisRound;
+
+            return this._players[winnerOfThisRound];
         }
         
-        /*
         public bool hasEveryPlayerEnoughCards()
         {
+            bool isTheGameStillOn = true;
 
+            for (int i = 0; i <= _players.Count()-1; i++)
+            {
+                if (_players[i].countCards(_players[i]) == 0)
+                {
+                    _players.Remove(_players[i]);
+                    // darf erst auf false gesetzt werden, wenn nur noch 1 Spieler Karten hat
+                    isTheGameStillOn = false;
+                }
+            }
+
+            return isTheGameStillOn;
         }
-        */
     }
 }
