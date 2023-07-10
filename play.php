@@ -34,7 +34,7 @@ $property = $_POST['flexRadioDefault'];
                 <small class="text-body-secondary">Mit der Eigenschaft der folgenden Karte hast du gespielt:</small>
             </div>
             <div class="row justify-content-center" style="margin-top: 10px;">
-                <div class="col-4 text-center">
+                <div class="col-sm-4 text-center">
                     <h4><?=$players[0]->getName();?></h4>
                     <div class="card text-center" style="width: 18rem; margin: auto;">
                         <img src="<?=$players[0]->getCards()[0]->getImage();?>" class="card-img-top" alt="...">
@@ -76,11 +76,11 @@ $property = $_POST['flexRadioDefault'];
                         </div>
                     </div>
                 </div>
-                <div class="col-4 text-center">
+                <div class="col-sm-4 text-center">
                     <h4><?=$players[1]->getName();?></h4>
-                    <div class="card text-start" style="width: 18rem; margin: auto;">
+                    <div class="card text-center" style="width: 18rem; margin: auto;">
                         <img src="<?=$players[1]->getCards()[0]->getImage();?>" class="card-img-top" alt="...">
-                        <div class="card-body">
+                        <div class="card-body text-start">
                             <h5 class="card-title"><?=$players[1]->getCards()[0]->getName();?></h5>
                             <small class="text-body-secondary">Wähle deine Eigenschaft.</small>
                             <form method="post" action="start.php">
