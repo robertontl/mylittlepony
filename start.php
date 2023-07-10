@@ -8,10 +8,15 @@ session_start();
 
 use robertontl\mylittlepony\Classes\Controller\GameController;
 
+$playerOne = $_POST['player'];
+$playerOne = trim($playerOne);
+$playerOne = stripslashes($playerOne);
+$playerOne = htmlspecialchars($playerOne);
+
 $game = new GameController;
 
 if ($_POST['modus'] == 'start') {
-    $game->createPlayers($_POST['player']);
+    $game->createPlayers($playerOne);
     $game->createCards();
     $players = $game->getPlayers();
     $_SESSION['players'] = $players;
