@@ -185,7 +185,6 @@ class GameController
         if (str_contains($property, 'size')) {
             if ($players[0]->chooseProperty('size') > $players[1]->chooseProperty('size')) {
                 $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
-                $win = true;
             } else if ($players[0]->chooseProperty('size') == $players[1]->chooseProperty('size')) {
                 if ($players[0]->getCards()[0]->getId()[1] > $players[1]->getCards()[0]->getId()[1]) {
                     $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
