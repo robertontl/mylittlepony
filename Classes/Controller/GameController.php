@@ -183,36 +183,92 @@ class GameController
         $win = true;
 
         if (str_contains($property, 'size')) {
-            if ($players[0]->chooseProperty('size') >= $players[1]->chooseProperty('size')) {
+            if ($players[0]->chooseProperty('size') > $players[1]->chooseProperty('size')) {
                 $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
                 $win = true;
+            } else if ($players[0]->chooseProperty('size') == $players[1]->chooseProperty('size')) {
+                if ($players[0]->getCards()[0]->getId()[1] > $players[1]->getCards()[0]->getId()[1]) {
+                    $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
+                } else if ($players[0]->getCards()[0]->getId()[1] == $players[1]->getCards()[0]->getId()[1]) {
+                    if (ord($players[0]->getCards()[0]->getId()[0]) > ord($players[1]->getCards()[0]->getId()[0])) {
+                        $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
+                    } else {
+                        $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
+                        $win = false;
+                    }
+                } else {
+                    $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
+                    $win = false;
+                }
             } else {
                 $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
                 $win = false;
             }
         }
+
         else if (str_contains($property, 'intelligence')) {
-            if ($players[0]->chooseProperty('intelligence') >= $players[1]->chooseProperty('intelligence')) {
+            if ($players[0]->chooseProperty('intelligence') > $players[1]->chooseProperty('intelligence')) {
                 $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
-                $win = true;
+            } else if ($players[0]->chooseProperty('intelligence') == $players[1]->chooseProperty('intelligence')) {
+                if ($players[0]->getCards()[0]->getId()[1] > $players[1]->getCards()[0]->getId()[1]) {
+                    $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
+                } else if ($players[0]->getCards()[0]->getId()[1] == $players[1]->getCards()[0]->getId()[1]) {
+                    if (ord($players[0]->getCards()[0]->getId()[0]) > ord($players[1]->getCards()[0]->getId()[0])) {
+                        $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
+                    } else {
+                        $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
+                        $win = false;
+                    }
+                } else {
+                    $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
+                    $win = false;
+                }
             } else {
                 $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
                 $win = false;
             }
         }
+
         else if (str_contains($property, 'speed')) {
-            if ($players[0]->chooseProperty('speed') >= $players[1]->chooseProperty('speed')) {
+            if ($players[0]->chooseProperty('speed') > $players[1]->chooseProperty('speed')) {
                 $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
-                $win = true;
+            } else if ($players[0]->chooseProperty('speed') == $players[1]->chooseProperty('speed')) {
+                if ($players[0]->getCards()[0]->getId()[1] > $players[1]->getCards()[0]->getId()[1]) {
+                    $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
+                } else if ($players[0]->getCards()[0]->getId()[1] == $players[1]->getCards()[0]->getId()[1]) {
+                    if (ord($players[0]->getCards()[0]->getId()[0]) > ord($players[1]->getCards()[0]->getId()[0])) {
+                        $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
+                    } else {
+                        $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
+                        $win = false;
+                    }
+                } else {
+                    $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
+                    $win = false;
+                }
             } else {
                 $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
                 $win = false;
             }
         }
+
         else if (str_contains($property, 'price')) {
-            if ($players[0]->chooseProperty('price') >= $players[1]->chooseProperty('price')) {
+            if ($players[0]->chooseProperty('price') > $players[1]->chooseProperty('price')) {
                 $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
-                $win = true;
+            } else if ($players[0]->chooseProperty('price') == $players[1]->chooseProperty('price')) {
+                if ($players[0]->getCards()[0]->getId()[1] > $players[1]->getCards()[0]->getId()[1]) {
+                    $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
+                } else if ($players[0]->getCards()[0]->getId()[1] == $players[1]->getCards()[0]->getId()[1]) {
+                    if (ord($players[0]->getCards()[0]->getId()[0]) > ord($players[1]->getCards()[0]->getId()[0])) {
+                        $players[0]->setTrumpedCards($players[1]->getCards()[0], 0);
+                    } else {
+                        $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
+                        $win = false;
+                    }
+                } else {
+                    $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
+                    $win = false;
+                }
             } else {
                 $players[1]->setTrumpedCards($players[0]->getCards()[0], 1);
                 $win = false;
