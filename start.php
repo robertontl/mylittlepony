@@ -53,23 +53,34 @@ $players = $_SESSION['players'];
                     if ($game->hasEveryPlayerEnoughCards($players) == false) {
                         if ($game->countTrumpedCards($players, 0) > $game->countTrumpedCards($players, 1)) {
                 ?>
-                            <h4>Herzlichen Glückwunsch <?=$players[0]->getName();?> - du hast gewonnen! ;-).</h4>
-                            <p>
-                                Du hast <?=$game->countTrumpedCards($players, 0);?> Karten getrumpft.<br />
-                                Dein Gegner hat nur <?=$game->countTrumpedCards($players, 1);?> Karte getrumpft.
-                            </p>
-
+                            <h4>Herzlichen Glückwunsch <?=$players[0]->getName();?> - du hast gewonnen! ;-)</h4>
                 <?php
                         } else {
                 ?>
-                            <h4><?=$players[0]->getName();?> - du hast leider verloren! :-(.</h4>
-                            <p>
-                                Du hast <?=$game->countTrumpedCards($players, 0);?> Karte getrumpft.<br />
-                                Dein Gegner hat <?=$game->countTrumpedCards($players, 1);?> Karten getrumpft.
-                            </p>
+                            <h4><?=$players[0]->getName();?> - du hast leider verloren! :-(</h4>
                 <?php
                         }
                 ?>
+                            <p>Anzahl der Runden, die du gewonnen hast: <strong><?=$game->countTrumpedCards($players, 0);?></strong></p>
+                            <p>
+                <?php
+                                for ($i = 0; $i < $game->countTrumpedCards($players, 0); $i++) {
+                ?>
+                                    <img src="<?=$players[0]->getTrumpedCards()[$i]->getImage();?>" style="width: 262px; height: 415px;" />
+                <?php
+                                }
+                ?>
+                            </p>
+                            <p>Anzahl der Runden, die dein Gegner gewonnen hat: <strong><?=$game->countTrumpedCards($players, 1);?></strong></p>
+                            <p>
+                <?php
+                                for ($i = 0; $i < $game->countTrumpedCards($players, 1); $i++) {
+                ?>
+                                    <img src="<?=$players[1]->getTrumpedCards()[$i]->getImage();?>" style="width: 262px; height: 415px;" />
+                <?php
+                                }
+                ?>
+                            </p>
                         <form action="index.php" method="post">
                             <button type="submit" class="btn btn-primary">Neustart</button>
                         </form>
